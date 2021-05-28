@@ -12,6 +12,6 @@ const tiempo3 = parseFloat(pasada3);
 let promedio = (tiempo1 + tiempo2 + tiempo3) / 3;
 
 console.log("Promedio de" , dato1 , promedio, "min/km");
-const msjAlert = "Tu promedio es" + " " + promedio + " " + "min/km";
+const msjAlert = "Tu promedio es " + promedio + " min/km";
 alert(msjAlert);
 
