@@ -1,4 +1,4 @@
-let nombre = Andresprompt("Ingrese su Nombre");
+let nombre = prompt("Ingrese su Nombre");
 let apellido = prompt("Ingrese su Apellido");
 let pasada1 = prompt("Ingresa tu primera pasada en formato m.ss");
 let pasada2 = prompt("Ingresa tu segunda pasada en formato m.ss");
