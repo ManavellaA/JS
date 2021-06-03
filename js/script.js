@@ -1,52 +1,49 @@
 let nombre = prompt("Ingrese su Nombre");
-if ((nombre === "") || (nombre === " ")){
+while((nombre === "") || (nombre === " ")){
     alert("Error al ingresar Nombre");
     nombre = prompt("Reingresar Nombre");
 }
+
 let apellido = prompt("Ingrese su Apellido");
-if ((apellido === "") || (apellido === " ")){
-    alert("Error al Apellido");
+while((apellido === "") || (apellido === " ")){
+    alert("Error al ingresar Apellido");
     apellido = prompt("Reingresar Apellido");
 }
 const dato1 = nombre + " " + apellido + " tu promedio es ";
 
-//---------------------------------------------------------------------------
+//-----Bucle de carga-----
 
-let pasada1 = prompt("Ingresa tu primera pasada usando punto para separar los minutos de los segundos");
-if ((pasada1 === "") || (pasada1 === " ")){
-    alert("Dato no ingresado");
-    pasada1 = prompt("Reingresar primera pasada usando punto para separar los minutos de los segundos");
+let i = 1;
+let pasada = 0;
+let suma = 0;
+
+alert(`ingresa tus pasadas, cuando termines, solo presiona la tecla "Enter" dejando el campo vacio`);
+
+while (pasada >= 0){
+    pasada = prompt(`Ingresa tu pasada n° ${i}`);
+    if ((pasada === "") || (pasada === " ")){
+        break
+    }
+    pasada = parseFloat(pasada); 
+    suma = suma + pasada;
+    i++;
 }
-const tiempo1 = parseFloat(pasada1);
+i--;
 
-let pasada2 = prompt("Ingresa tu segunda pasada usando punto para separar los minutos de los segundos");
-if ((pasada2 === "") || (pasada2 === " ")){
-    alert("Dato no ingresado");
-    pasada2 = prompt("Reingresar segunda pasada usando punto para separar los minutos de los segundos");
-}
-const tiempo2 = parseFloat(pasada2);
+let promedio = suma / i;
 
-let pasada3 = prompt("Ingresa tu tercera pasada usando punto para separar los minutos de los segundos");
-if ((pasada3 === "") || (pasada3 === " ")){
-    alert("Dato no ingresado");
-    pasada3 = prompt("Reingresar tercera pasada usando punto para separar los minutos de los segundos");
-}
-const tiempo3 = parseFloat(pasada3);
+//------------------------
 
-//-----------------------------------------------------------------------------
-
-let promedio = (tiempo1 + tiempo2 + tiempo3)/3;
-
-let msj 
+let msj; 
 
 if (promedio < 4.5){
     msj = ",lo cual Destacable";
 }
 else if (promedio <= 6){
-    msj = ",lo cual Normal";
+    msj = ",lo cual Muy bueno";
     }
 else if (promedio <= 7){
-    msj =",lo cual Regular";
+    msj =",lo cual Normal";
         }    
 else{
     msj = ",lo cual Malo" ;
