@@ -1,53 +1,73 @@
-let nombre = prompt("Ingrese su Nombre");
-while((nombre === "") || (nombre === " ")){
-    alert("Error al ingresar Nombre");
-    nombre = prompt("Reingresar Nombre");
-}
+/*La idea de mi proyecto es una app que sirva para deportes y salud,
+en la que se puedan calcular el IMC, ciclos de entrenamiento, FC Maxima, Running, Calorias, Etc.*/
 
-let apellido = prompt("Ingrese su Apellido");
-while((apellido === "") || (apellido === " ")){
-    alert("Error al ingresar Apellido");
-    apellido = prompt("Reingresar Apellido");
-}
-const dato1 = nombre + " " + apellido + " tu promedio es ";
+//En esta primera entrega solo coloco el caluculo de una rutina de Running pero proximamente agregare otras funcionalidades mas.
 
-//-----Bucle de carga-----
 
-let i = 1;
-let pasada = 0;
-let suma = 0;
+//----Calculo de rutina de Running----
+let nombre = "Nombre"
+let apellido = "Apellido"
+checkData(nombre);
+checkData(apellido);
+const dato = nombre + " " + apellido + " tu promedio es ";
 
 alert(`ingresa tus pasadas, cuando termines, solo presiona la tecla "Enter" dejando el campo vacio`);
 
-while (pasada >= 0){
-    pasada = prompt(`Ingresa tu pasada n° ${i}`);
-    if ((pasada === "") || (pasada === " ")){
-        break
-    }
-    pasada = parseFloat(pasada); 
-    suma = suma + pasada;
-    i++;
-}
-i--;
+let promedio = 0;
+dataCharge();
 
-let promedio = suma / i;
+let msj = null; 
+calif();
 
-//------------------------
-
-let msj; 
-
-if (promedio < 4.5){
-    msj = ",lo cual Destacable";
-}
-else if (promedio <= 6){
-    msj = ",lo cual Muy bueno";
-    }
-else if (promedio <= 7){
-    msj =",lo cual Normal";
-        }    
-else{
-    msj = ",lo cual Malo" ;
-}
-
-const msjAlert = dato1 + promedio + " min/km " + msj;
+const msjAlert = dato + promedio + " min/km " + msj;
 alert(msjAlert);
+//------------------------------------
+
+//-------------Funciones--------------
+function checkData (par1){
+    let variable = par1
+    par1 = prompt(`Ingresar ${variable}`);
+    while( ! par1 || par1 === " "){
+        alert(`${variable} mal Ingresado`);
+        par1 = prompt(`Reingresar ${variable}`);
+    }
+    if(variable == "Nombre"){
+        nombre = par1
+    }
+    else{
+        apellido = par1
+    }
+}
+
+function dataCharge(){
+    let pasada = 0;
+    let i = 1;
+    let suma = 0;
+    while (pasada >= 0){
+        pasada = prompt(`Ingresa tu pasada n° ${i}`);
+        if (! pasada || pasada === " "){
+            break
+        }
+        pasada = parseFloat(pasada); 
+        suma = suma + pasada;
+        i++;
+    }
+    i--;
+    
+    promedio = suma / i;
+}
+
+function calif(){
+    if (promedio < 4.5){
+        msj = ",lo cual Destacable";
+    }
+    else if (promedio <= 6){
+        msj = ",lo cual Muy bueno";
+        }
+    else if (promedio <= 7){
+        msj =",lo cual Normal";
+            }    
+    else{
+        msj = ",lo cual Malo" ;
+    }
+}
