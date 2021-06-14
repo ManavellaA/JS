@@ -5,11 +5,8 @@ en la que se puedan calcular el IMC, ciclos de entrenamiento, FC Maxima, Running
 
 
 //----Calculo de rutina de Running----
-let nombre = "Nombre"
-let apellido = "Apellido"
-checkData(nombre);
-checkData(apellido);
-const dato = nombre + " " + apellido + " tu promedio es ";
+let user;
+logData();
 
 alert(`ingresa tus pasadas, cuando termines, solo presiona la tecla "Enter" dejando el campo vacio`);
 
@@ -19,24 +16,25 @@ dataCharge();
 let msj = null; 
 calif();
 
-const msjAlert = dato + promedio + " min/km " + msj;
+const msjAlert = user + " tu promedio es " + promedio + " min/km " + msj;
 alert(msjAlert);
 //------------------------------------
 
 //-------------Funciones--------------
-function checkData (par1){
-    let variable = par1
-    par1 = prompt(`Ingresar ${variable}`);
-    while( ! par1 || par1 === " "){
-        alert(`${variable} mal Ingresado`);
-        par1 = prompt(`Reingresar ${variable}`);
+function logData (){
+    let nombre = prompt(`Ingresar Nombre`);
+    while( ! nombre || nombre === " "){
+        alert(`Nombre mal Ingresado`);
+        nombre = prompt(`Reingresar Nombre`);
     }
-    if(variable == "Nombre"){
-        nombre = par1
+    let apellido = prompt(`Ingresar Apellido`);
+    while( ! apellido || apellido === " "){
+        alert(`Apellido mal Ingresado`);
+        apellido = prompt(`Reingresar Apellido`);
     }
-    else{
-        apellido = par1
-    }
+    let res = nombre + " " + apellido;
+
+    return user = res;
 }
 
 function dataCharge(){
@@ -58,6 +56,7 @@ function dataCharge(){
 }
 
 function calif(){
+    let msj
     if (promedio < 4.5){
         msj = ",lo cual Destacable";
     }
