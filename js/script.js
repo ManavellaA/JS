@@ -1,6 +1,9 @@
 //----Calculo de rutina de Running----
 let user;
-logData();
+let peso;
+let estatura;
+logUser();
+userData();
 
 alert(`ingresa tus pasadas, cuando termines, solo presiona la tecla "Enter" dejando el campo vacio`);
 
@@ -10,25 +13,54 @@ dataCharge();
 let msj; 
 calif();
 
-const msjAlert = user + " tu promedio es " + promedio + " min/km " + msj;
+const msjAlert = user + " tu promedio es " + promedio + " min/km y tu desempeño clasifica como " + msj;
 alert(msjAlert);
 //------------------------------------
 
-//-------------Funciones--------------
-function logData (){
-    let nombre = prompt(`Ingresar Nombre`);
-    while( ! nombre || nombre === " "){
-        alert(`Nombre mal Ingresado`);
-        nombre = prompt(`Reingresar Nombre`);
+//--------------Objeto----------------
+class dataUser{
+    constructor(dato1, dato2, dato3, dato4, dato5){
+        this.usuario = dato1;
+        this.peso = dato2;
+        this.estatura = dato3;
+        this.promedio = dato4;
+        this.desempeño = dato5
     }
-    let apellido = prompt(`Ingresar Apellido`);
-    while( ! apellido || apellido === " "){
-        alert(`Apellido mal Ingresado`);
-        apellido = prompt(`Reingresar Apellido`);
+    leer(){
+        console.log(`El usuario ${this.usuario} pesa ${this.peso}Kg, mide ${estatura}cm y su desempeño calsifica como ${this.desempeño}`)
     }
-    let res = nombre + " " + apellido;
+}
 
-    user = res;
+let user1 = new dataUser(user, peso, estatura, promedio, msj);
+user1.leer();
+//------------------------------------
+
+//-------------Funciones--------------
+function logUser (){
+    let nombre = prompt(`Ingresa un nombre de usuario`);
+    while( ! nombre || nombre === " "){
+        alert(`Dato no Ingresado`);
+        nombre = prompt(`Ingresar un nombre de usuario`);
+    }
+    user = nombre
+}
+
+function userData(){
+    let dato1 = prompt(`Ingresa tu peso actual (solo numeros)`);
+    while( ! dato1 || dato1 === " "){
+        alert(`Dato no Ingresado`);
+        dato1 = prompt(`Ingresa tu peso actual (solo numeros)`);
+    }
+    parseInt(dato1);
+    let dato2 = prompt(`Ingresa tu estatura en centimetros (solo numeros)`);
+    while( ! dato2 || dato2 === " "){
+        alert(`Dato no Ingresado`);
+        dato2 = prompt(`Ingresa tu estatura en centimetros (solo numeros)`);
+    }
+    parseInt(dato2);
+
+    peso = dato1
+    estatura = dato2
 }
 
 function dataCharge(){
@@ -52,16 +84,16 @@ function dataCharge(){
 
 function calif(){
     if (promedio < 4.5){
-        res = ",lo cual Destacable";
+        res = "Destacable";
     }
     else if (promedio <= 6){
-        res = ",lo cual Muy bueno";
+        res = "Muy bueno";
         }
     else if (promedio <= 7){
-        res =",lo cual Normal";
+        res ="Normal";
             }    
     else{
-        res = ",lo cual Malo" ;
+        res = "Malo" ;
     }
 
     msj = res
