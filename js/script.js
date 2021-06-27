@@ -29,14 +29,16 @@ function userData(){
 userData();
 
 
-function esqueleto(){
+function principal(){
 let eleccion = prompt(`Si queres sabes tu IMC escribe "IMC", si queres calificar tu Ciclo de Enternamiento escribe "Ciclo"`);
+eleccion.toUpperCase
 
-if(eleccion === "Ciclo" || eleccion === "ciclo" || eleccion === "CICLO"){
+if(eleccion === "CICLO"){
     ciclo();
 
     eleccion = prompt(`Si todavia queres saber tu IMC escribe "IMC", sino solo presiona Enter`);
-    if(eleccion === "IMC" || eleccion === "imc" || eleccion === "Imc"){
+    eleccion.toUpperCase
+    if(eleccion === "IMC"){
     Imc();
     }
     else{
@@ -47,7 +49,8 @@ if(eleccion === "Ciclo" || eleccion === "ciclo" || eleccion === "CICLO"){
 else{
     Imc();
     eleccion = prompt(`Si todavia queres ingresar tu ciclo de entenamiento escribe "Ciclo", sino solo presiona Enter`);
-        if(eleccion === "Ciclo" || eleccion === "ciclo" || eleccion === "CICLO"){
+    eleccion.toUpperCase
+        if(eleccion === "CICLO"){
             ciclo();
         }
         else{
@@ -58,7 +61,7 @@ else{
 
 alert(`Gracias por visitar nuestro sitio`);
 }
-esqueleto();
+principal();
 //------------------------------------
 
 function dataCharge(){
