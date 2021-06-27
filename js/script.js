@@ -28,16 +28,15 @@ function userData(){
 }
 userData();
 
-
 function principal(){
 let eleccion = prompt(`Si queres sabes tu IMC escribe "IMC", si queres calificar tu Ciclo de Enternamiento escribe "Ciclo"`);
-eleccion.toUpperCase
+eleccion = eleccion.toUpperCase();
 
 if(eleccion === "CICLO"){
     ciclo();
 
     eleccion = prompt(`Si todavia queres saber tu IMC escribe "IMC", sino solo presiona Enter`);
-    eleccion.toUpperCase
+    eleccion = eleccion.toUpperCase();
     if(eleccion === "IMC"){
     Imc();
     }
@@ -49,7 +48,7 @@ if(eleccion === "CICLO"){
 else{
     Imc();
     eleccion = prompt(`Si todavia queres ingresar tu ciclo de entenamiento escribe "Ciclo", sino solo presiona Enter`);
-    eleccion.toUpperCase
+    eleccion = eleccion.toUpperCase();
         if(eleccion === "CICLO"){
             ciclo();
         }
@@ -133,7 +132,8 @@ function Imc(){
     }
 }
 
-//--------------Array----------------
+function storageUsuario(){
+
 const arrayUsuario = []
 
 class dataUser{
@@ -153,15 +153,28 @@ class dataUser{
 arrayUsuario.push(new dataUser(user, peso, estatura, promedio, msj, imc))
 
 for (let usuario of arrayUsuario){
-    document.write("<br>");
-    document.write(`<div><p>Nombre de Usuario: ${usuario.usuario}</p>`);
-    document.write(`<p>Peso: ${usuario.peso}</p>`);
-    document.write(`<p>Estatura: ${usuario.estatura}</p>`);
-    document.write(`<p>Promedio: ${usuario.promedio}</p>`);
-    document.write(`<p>Desempeño deportivo: ${usuario.desempeño}</p>`);
-    document.write(`<p>IMC: ${usuario.imc}</p></div>`);
-    document.write("<br>");
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = 
+    `<br>
+     <p>Nombre de Usuario: ${usuario.usuario}</p>
+     <p>Peso: ${usuario.peso}Kg</p>
+     <p>Estatura: ${usuario.estatura}cm</p>
+     <p>Promedio: ${usuario.promedio}Km/min</p>
+     <p>Desempeño deportivo: ${usuario.desempeño}</p>
+     <p>IMC: ${usuario.imc}</p>
+     <br>`
+    document.body.appendChild(contenedor);
     usuario.leer();
 }
 
-//------------------------------------
+//----------------A fata de Base de datos utilizo el localStorage para guardar los usuarios-------------------
+
+let usuariosRecuperados = localStorage.getItem("usuariosGuardados");
+arrayUsuario.push(JSON.parse(usuariosRecuperados));
+
+const arrayUsuarios = JSON.stringify(arrayUsuario);
+localStorage.setItem("usuariosGuardados", arrayUsuarios);
+
+//------------------------------------------------------------------------------------------------------------
+}
+storageUsuario();
