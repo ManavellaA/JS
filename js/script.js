@@ -132,7 +132,7 @@ function Imc(){
     }
 }
 
-function storageUsuario(){
+function usuario(){
 
 const arrayUsuario = []
 
@@ -143,7 +143,7 @@ class dataUser{
         this.estatura = dato3;
         this.promedio = dato4;
         this.desempeño = dato5;
-        this.imc = dato6;
+        this.imc = Math.fround(dato6);
     }
     leer(){
         console.log(`El usuario ${this.usuario} pesa ${this.peso}Kg, mide ${estatura}cm, su IMC es de ${imc} y su desempeño calsifica como ${this.desempeño}`)
@@ -166,15 +166,5 @@ for (let usuario of arrayUsuario){
     document.body.appendChild(contenedor);
     usuario.leer();
 }
-
-//----------------A fata de Base de datos utilizo el localStorage para guardar los usuarios-------------------
-
-let usuariosRecuperados = localStorage.getItem("usuariosGuardados");
-arrayUsuario.push(JSON.parse(usuariosRecuperados));
-
-const arrayUsuarios = JSON.stringify(arrayUsuario);
-localStorage.setItem("usuariosGuardados", arrayUsuarios);
-
-//------------------------------------------------------------------------------------------------------------
 }
-storageUsuario();
+usuario();
