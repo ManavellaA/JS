@@ -23,17 +23,15 @@ function ciclo(){
             sumaCiclo = sumaCiclo + pasada;
             i++;
         }
-        let calc = sumaCiclo / i;
-        promedio = calc.toFixed(2);
+        let promedio = sumaCiclo / i;
+        promedio = promedio.toFixed(2);
         
         let contenedorNuevo = document.createElement("div");
         contenedorNuevo.setAttribute("class", "bx div_ciclo");
-        let contenedorNuevoData = document.createElement("div");
-        contenedorNuevoData.innerHTML = 
+        contenedorNuevo.innerHTML = 
              `<p>Tu promedio es: <strong style="color: #67b0d1;">${promedio} min/km</strong></p>
              <input type="number" id="calc_pasada" class="form-control" placeholder="Tiempo de Ciclo">
-             <button type="button" id="btn_pasada" class="btn btn-outline-primary">Sumar</button>`
-        contenedorNuevo.appendChild(contenedorNuevoData);
+             <button type="button" id="btn_pasada" class="btn btn-outline-primary">Sumar</button>`;
         //Intercambio
         let contenedorViejo = document.querySelector(".div_ciclo");
         let nodoPadre = contenedorViejo.parentNode;
@@ -71,12 +69,10 @@ function calcImc(){
                 //DIV de contenido 
                 let contenedorNuevo = document.createElement("div");
                 contenedorNuevo.setAttribute("class", "row d-flex align-items-center justify-content-center");
-                let contenedorNuevoData = document.createElement("div");
-                contenedorNuevoData.innerHTML = 
+                contenedorNuevo.innerHTML = 
                      `<p>Tu IMC es: <strong style="color: #67b0d1;">${imc}</strong></p>
                       <p>Segun la OMS clasificaria como:</p>
                       <p style="color: #67b0d1";"><strong>${ImcClasificacion(imc)}</strong></p>`
-                contenedorNuevo.appendChild(contenedorNuevoData);
                 //Intercambio
                 let contenedorViejo = document.getElementById("div_imc");
                 let nodoPadre = contenedorViejo.parentNode
@@ -140,7 +136,7 @@ function mensaje(){
             localStorage.setItem("ContactoUsuario", mensaje);
     
             let contenedorNuevo = document.createElement("div");
-            contenedorNuevo.setAttribute("class", "col-lg-6 formContacto d-flex align-items-center justify-content-center");
+            contenedorNuevo.setAttribute("class", "col-lg-6 d-flex align-items-center justify-content-center");
             let contenedorNuevoData = document.createElement("div");
             contenedorNuevoData.setAttribute("class", "row d-flex align-items-center justify-content-center");
             contenedorNuevoData.innerHTML = 
@@ -152,6 +148,10 @@ function mensaje(){
             let nodoPadre = contenedorViejo.parentNode
             nodoPadre.replaceChild(contenedorNuevo, contenedorViejo);
         }
+        document.getElementById("contactoNombre").value = "";
+        document.getElementById("contactoEmail").value = "";
+        document.getElementById("contactoAsunto").value = "";
+        document.getElementById("contactoMensaje").value = "";
     }
 }
 mensaje();
@@ -194,17 +194,14 @@ function calcFc(){
 
                 //DIV de contenido 
                 let contenedorNuevo = document.createElement("div");
-                contenedorNuevo.setAttribute("class", "div_fc");
-                let contenedorNuevoData = document.createElement("div");
-                contenedorNuevoData.setAttribute("class", "bx");
-                contenedorNuevoData.innerHTML = 
+                contenedorNuevo.setAttribute("class", "div_fc bx");
+                contenedorNuevo.innerHTML = 
                      `<p>FC Reposo: <strong style="color: #67b0d1;">${fcRep} ppm</strong></p>
                      <p>FC 60% Zona 1: <strong style="color: #67b0d1;">${z1} ppm</strong></p>
                      <p>FC 70% Zona 2: <strong style="color: #67b0d1;">${z2} ppm</strong></p>
                      <p>FC 80% Zona 3: <strong style="color: #67b0d1;">${z3} ppm</strong></p>
                      <p>FC 90% Zona 4: <strong style="color: #67b0d1;">${z4} ppm</strong></p>
                      <p>FC 100 Zona 5: <strong style="color: #67b0d1;">${z5} ppm</strong></p>`
-                contenedorNuevo.appendChild(contenedorNuevoData);
                 //Intercambio
                 let contenedorViejo = document.querySelector(".div_fc");
                 let nodoPadre = contenedorViejo.parentNode
