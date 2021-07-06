@@ -2,7 +2,6 @@ var sumaCiclo = 0;
 var i = 0;
 
 function ciclo(){
-    let promedio;
     let ciclo = document.getElementById("btn_pasada");
     ciclo.addEventListener("click", calcPasada);
     let enter = document.getElementById("calc_pasada");
@@ -26,16 +25,11 @@ function ciclo(){
         promedio = sumaCiclo / i;
         promedio = promedio.toFixed(2);
         
-        let contenedorNuevo = document.createElement("div");
-        contenedorNuevo.setAttribute("class", "bx div_ciclo");
-        contenedorNuevo.innerHTML = 
+        let contenedor = document.querySelector(".div_ciclo");
+        contenedor.innerHTML = 
              `<p>Tu promedio es: <strong style="color: #67b0d1;">${promedio} min/km</strong></p>
              <input type="number" id="calc_pasada" class="form-control" placeholder="Tiempo de Ciclo">
              <button type="button" id="btn_pasada" class="btn btn-outline-primary">Sumar</button>`;
-        //Intercambio
-        let contenedorViejo = document.querySelector(".div_ciclo");
-        let nodoPadre = contenedorViejo.parentNode;
-        nodoPadre.replaceChild(contenedorNuevo, contenedorViejo);
     }
 }
 ciclo();
