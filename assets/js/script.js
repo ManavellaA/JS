@@ -23,7 +23,7 @@ function ciclo(){
             sumaCiclo = sumaCiclo + pasada;
             i++;
         }
-        let promedio = sumaCiclo / i;
+        promedio = sumaCiclo / i;
         promedio = promedio.toFixed(2);
         
         let contenedorNuevo = document.createElement("div");
