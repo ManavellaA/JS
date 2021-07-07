@@ -580,7 +580,7 @@ section {
 }
 
 .about .icon-boxes .icon-box input {
-  margin: 10px 0 10px 0;
+  margin: 10px 0 10px 0!important;
   height: 2rem;
   width: 10rem;
   font-family: "Open Sans", sans-serif;

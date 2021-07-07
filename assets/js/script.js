@@ -1,6 +1,4 @@
-var sumaCiclo = 0; 
-var i = 0;
-
+let i = 0;
 function ciclo(){
     let reset = document.getElementById("btn_pasada_reset");
     if(i !== 0){
@@ -20,30 +18,41 @@ ciclo();
 
 function calcPasada(e){
     e.preventDefault();
+    let sumaCiclo = 0;
     let promedio;
+
+    if(i !== 0){
+        let promRecuperado = localStorage.getItem("Promedios");
+        sumaCiclo = promRecuperado
+        sumaCiclo = parseFloat(sumaCiclo);
+    }
+
     let pasada = document.getElementById("calc_pasada").value;
     pasada = parseFloat(pasada);
-        if( !pasada || pasada == " "){
+
+    if( !pasada || pasada == " "){
         alert("Dato ingresado no valido");
-        }
-        else{               
+    }
+    else{ 
             sumaCiclo = sumaCiclo + pasada;
             i++;
-        }
-        let calc = sumaCiclo / i;
-        promedio = calc.toFixed(2);
-        
-        let contenedorNuevo = document.createElement("div");
-        contenedorNuevo.setAttribute("class", "div_ciclo");
-        contenedorNuevo.innerHTML = 
-             `<p>Ingresaste: <strong style="color: #67b0d1;">${i}</strong> Pasada/s</p>
-             <p>Tu promedio es: <strong style="color: #67b0d1;">${promedio} min/km</strong></p>
-             <button type="button" id="btn_pasada_reset" class="btn btn-outline-primary">Reset</button>`
-        let contenedorViejo = document.querySelector(".div_ciclo");
-        let nodoPadre = contenedorViejo.parentNode;
-        nodoPadre.replaceChild(contenedorNuevo, contenedorViejo);
+    }
 
-        document.getElementById("calc_pasada").value = "";
+    let calc = sumaCiclo / i;
+    promedio = calc.toFixed(2);
+    
+    let contenedorNuevo = document.createElement("div");
+    contenedorNuevo.setAttribute("class", "div_ciclo");
+    contenedorNuevo.innerHTML = 
+         `<p>Ingresaste: <strong style="color: #67b0d1;">${i}</strong> Pasada/s</p>
+         <p>Tu promedio es: <strong style="color: #67b0d1;">${promedio} min/km</strong></p>
+         <button type="button" id="btn_pasada_reset" class="btn btn-outline-primary">Reset</button>`
+    let contenedorViejo = document.querySelector(".div_ciclo");
+    let nodoPadre = contenedorViejo.parentNode;
+    nodoPadre.replaceChild(contenedorNuevo, contenedorViejo);
+    document.getElementById("calc_pasada").value = "";
+
+    localStorage.setItem("Promedios", sumaCiclo);
     }
 
 function resetPasada(e){
