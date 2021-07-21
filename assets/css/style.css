@@ -12,7 +12,6 @@ body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
 }
-
 a {
   text-decoration: none;
   color: #67b0d1;
@@ -589,6 +588,10 @@ section {
 
 .about .icon-boxes .icon-box button {
   font-family: "Open Sans", sans-serif;
+}
+
+.div_fc{
+  margin-top: 5vh;
 }
 
 @media (max-width: 1200px) {
