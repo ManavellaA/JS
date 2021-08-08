@@ -1,3 +1,10 @@
+const userArray = [{user:"ANDRES", pass:"ANDRES"}, {user:"JUAN", pass:"JUAN"}, {user:"PEDRO", pass:"PEDRO"}]
+// localStorage.setItem("Usuarios", JSON.stringify(userArray));
+
+const dataArray = JSON.parse(localStorage.getItem("DatosUsuario"))
+
+// localStorage.setItem("DatosUsuario", JSON.stringify(dataArray));
+
 //-----------------------------------------------------------------------------//
 //---------------------------- Calculadora de IMC  ----------------------------//
 //-----------------------------------------------------------------------------//
@@ -57,14 +64,9 @@ function ImcClasificacion(valor){
 
 let i = 0;
 function ciclo(){
-    $(`#btn_pasada_reset`).click(resetPasada);
     $(`#btn_pasada`).click(calcPasada);
     $(`#calc_pasada`).keydown(function (e) {if(e.keyCode === 13) {calcPasada(e);}});
-    function resetPasada(){
-        $(`.div_ciclo`).html(
-            `<button type="button" hidden id="btn_pasada_reset" class="btn btn-outline-primary">Reset</button>`
-        );
-    }    
+ 
 }
 ciclo();
 
@@ -95,7 +97,18 @@ function calcPasada(e){
     $(`#calc_pasada`).val(``);
     localStorage.setItem("Promedios", sumaCiclo);
     }
+    resetPasada();
 }
+
+function resetPasada(){
+    $(`#btn_pasada_reset`).click(() => {
+        $(`.div_ciclo`).html(
+            `<button type="button" hidden id="btn_pasada_reset" class="btn btn-outline-primary">Reset</button>`
+        );
+        i = 0
+        localStorage.setItem("Promedios", 0);
+    });
+}   
 
 //-----------------------------------------------------------------------------//
 //---------------------------- Calculadora de FCs  ----------------------------//

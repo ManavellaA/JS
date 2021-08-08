@@ -41,14 +41,45 @@
           <li><a class="nav-link scrollto" href="#about">Calculadoras</a></li>
           <li><a class="nav-link scrollto" href="#services">Servicios</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Fitness Tip's</a></li>
-          <li><a class="nav-link scrollto" href="#team">Sobre nosotos</a></li>
+          <li><a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" id="btn-session">Iniciar Session</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
     </div>
+
   </header><!-- End Header -->
+
+  <div>
+    <div class="modal fade form__modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content apend">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Inicio de Session
+            </h5>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" id="usuario" class="form-control" placeholder="Usuario" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="password" id="pass" class="form-control" placeholder="Contraseña" required>
+                <div class="d-flex justify-content-center align-items-center"><label id="ver">Ver</label></div> 
+              </div>
+            </div> 
+          </div>
+          <div class="modal-footer">
+            <a href="#" id="registrar">Registrarme</a>
+              <button type="button" class="btn btn-primary" id="iniciarSession" data-bs-dismiss="modal">
+                Iniciar
+              </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
 
   <!-- ======= Bienvenido ======= -->
   <section id="hero">
@@ -122,14 +153,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- ======= Calculadora de  ======= -->
-                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-                  <i class="bx bx-abacus "></i>
-                  <h4>Beatae veritatis</h4>
-                  <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
-                </div>
-                
               </div>
             </div><!-- End .content-->
           </div>
@@ -184,41 +207,6 @@
 
       </div>
     </section><!-- End  -->
-
-    <!-- ======= Contadores ======= -->
-    <section id="counts" class="counts  section-bg">
-      <div class="container">
-
-        <div class="row no-gutters justify-content-evenly align-items-center">
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Clientes Felices</strong> consequuntur quae</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Horas de soporte</strong> aut commodi quaerat</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Personal</strong> rerum asperiores dolor</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End -->
 
     <!-- ======= Fitness App ======= -->
     <section id="portfolio" class="portfolio">
@@ -336,70 +324,6 @@
       </div>
     </section><!-- End -->
 
-    <!-- ======= Sobre Nosotros ======= -->
-    <section id="team" class="team">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
-          <h2>Sobre nosotros</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="fade-up">
-              <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Andres Manavella</h4>
-                <span>Fundador de Fitness App</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="fade-up" data-aos-delay="150">
-              <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Galvan</h4>
-                <span>Product Manager</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End -->
-
     <!-- ======= Contacto ======= -->
     <section id="contact" class="contact section-bg">
       <div class="container" data-aos="fade-up">
@@ -495,6 +419,8 @@
   <!-- JS -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/registro.js"></script>
+  <script src="./assets/js/Log.js"></script>
   <script src="assets/js/main.js"></script>
 
 </body>
