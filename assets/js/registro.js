@@ -116,11 +116,12 @@ function verificacion(){
       verificacion();
     }
     else{
-      userArray = JSON.parse(localStorage.getItem("usuarios"))
-      for (let busqueda of userArray){
-        if(busqueda.usuario === usuario.toUpperCase()){
-          alert("el usuario esta en uso");
-          estado = false
+      if(userArray = JSON.parse(localStorage.getItem("usuarios")) !== null){
+        for (let busqueda of userArray){
+          if(busqueda.usuario === usuario.toUpperCase()){
+            alert("el usuario esta en uso");
+            estado = false
+          }
         }
       }  
       if(estado){ 
