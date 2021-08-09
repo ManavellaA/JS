@@ -22,7 +22,7 @@ function validacion() {
       userArray = JSON.parse(localStorage.getItem("usuarios"))
       for (let busqueda of userArray){
         // normalmente tendria que enviar la info de logueo a Back-end a travez de una API
-        if(busqueda.usuario === usuario.toUpperCase() && busqueda.pass === pass){
+        if(busqueda.usuario === usuario && busqueda.pass === pass){
           let msj = {usuario:usuario, pass:pass};
           log = false
           ajax(msj, usuario);
@@ -50,12 +50,13 @@ function ajax(dato1, dato2){
 
 
 function arrayFunc(dato2){
-  $(`#btn-session`).text(`${dato2}`);
+  $(`#btn-session`).text(`Hola, ${dato2}`);
   $(`.apend`).html(`
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">
         Hola, ${dato2}
       </h5>
+      <p>X</p>
     </div>
     <div class="modal-body">
       <div class="row">
@@ -67,7 +68,7 @@ function arrayFunc(dato2){
       </div> 
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="guardar">
+        <button type="button" class="btn btn-primary" id="guardar" data-bs-dismiss="modal">
           Guardar Datos
         </button>
         <button type="button" class="btn btn-primary" id="cerrarSession" data-bs-dismiss="modal">
