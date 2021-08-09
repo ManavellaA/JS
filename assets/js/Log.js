@@ -11,34 +11,28 @@ function validacion() {
   let usuario = document.getElementById(`usuario`).value
   let pass = document.getElementById(`pass`).value
   let estado = true;
-  let log = false;
+  let log = true;
 
   if(!usuario || !pass){
       alert("Falta completar un campo");
       estado = false
   }
 
-  switch(estado){
-    case true:
+  if(estado){
       for (let busqueda of userArray){
         // normalmente tendria que enviar la info de logueo a Back-end a travez de una API
         if(busqueda.user === usuario.toUpperCase() && busqueda.pass === pass){
           let msj = {usuario:usuario, pass:pass};
-          log = true
+          log = false
           ajax(msj, usuario);
         }
       }
-      switch(log){
-        case false:
+      if(log){
           alert("Usuario no Registrado");
-        break;
       }
-    break;
   }
-
   document.getElementById(`usuario`).value = "";
   document.getElementById(`pass`).value = "";
-
 }
 
 function ajax(dato1, dato2){
@@ -96,8 +90,8 @@ function cerrarSession() {
  function guardarDatos() { 
   $(`#guardar`).click(function (e) { 
     e.preventDefault();
-    dataArray.push 
-    localStorage.setItem("DatosUsuario", JSON.stringify(dataArray))
+    let sumaTiempos = localStorage.getItem("Promedios")
+    sessionArray.push(sumaTiempos/i);
   });
 
   }

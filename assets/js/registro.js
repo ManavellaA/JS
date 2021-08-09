@@ -1,3 +1,12 @@
+class User{
+  constructor(datos, locacion, user, pass){
+      this.datos = datos;
+      this.locacion = locacion;
+      this.user = user;
+      this.pass = pass;
+  }
+}
+
 //-------------------------Registro de Usuarios---------------------//
 function reg() {  
 document.getElementById(`registrar`).addEventListener("click", () => {    
@@ -49,6 +58,7 @@ function modalSec(){
       `
   );
   verPass();
+  
 }
 
 function modalStd(){
@@ -138,29 +148,16 @@ function verificacion(){
           estado = false
         }
       }  
-      switch(estado){
-        case true:  
+      if(estado){ 
           let datos = `${nombre} ${apellido}`
           let locacion = `${provincia}, ${ciudad}, ${calle} ${numero}`
-          userArray.push (objUser(datos, locacion, usuario, pass))
+          let user = new User(datos, locacion, usuario, pass);
+          userArray.push(user)
           RegExitoso();
-          break;
       }
     }
   });
 }
-
-function objUser(dato1, dato2, dato3, dato4){
-  class user{
-      constructor(dato1, dato2, dato3, dato4){
-          this.datos = dato1;
-          this.locacion = dato2;
-          this.user = dato3;
-          this.pass = dato4;
-      }
-  }
-  return new user(dato1, dato2, dato3, dato4);
-} 
 
 //----------------------------Efecto vista de Contraseña-----------------//
 function verPass(){

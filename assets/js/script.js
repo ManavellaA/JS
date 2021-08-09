@@ -5,6 +5,8 @@ const dataArray = JSON.parse(localStorage.getItem("DatosUsuario"))
 
 // localStorage.setItem("DatosUsuario", JSON.stringify(dataArray));
 
+const sessionArray = []
+
 //-----------------------------------------------------------------------------//
 //---------------------------- Calculadora de IMC  ----------------------------//
 //-----------------------------------------------------------------------------//
@@ -30,6 +32,7 @@ function validacionIMC(){
                  <p style="color: #67b0d1";"><strong>${ImcClasificacion(imc)}</strong></p>`
             )
             $(`#div_imc`).fadeIn("slow")}, 200);
+        sessionArray.push(imc, ImcClasificacion(imc));
     }
     
     else{
@@ -95,8 +98,8 @@ function calcPasada(e){
     <button type="button" id="btn_pasada_reset" class="btn btn-outline-primary">Reset</button>`
     );
     $(`#calc_pasada`).val(``);
-    localStorage.setItem("Promedios", sumaCiclo);
-    }
+    localStorage.setItem("Promedios", sumaCiclo); 
+    }    
     resetPasada();
 }
 
@@ -145,6 +148,7 @@ function validacionFC(e){
             <p>FC Zona 5: <strong style="color: #67b0d1;">${z90} - ${fcMax} ppm</strong></p>
             </div>`);
             $(`.div_fc`).fadeIn("slow")}, 200);
+            sessionArray.push(fcEdad, fcRep, z50, z60, z70, z80, z90, fcMax);
     }else{
         alert("No ingresaste todos los campos requeridos");
     }
