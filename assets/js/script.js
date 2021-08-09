@@ -1,9 +1,4 @@
-const userArray = [{user:"ANDRES", pass:"ANDRES"}, {user:"JUAN", pass:"JUAN"}, {user:"PEDRO", pass:"PEDRO"}]
-// localStorage.setItem("Usuarios", JSON.stringify(userArray));
-
-const dataArray = JSON.parse(localStorage.getItem("DatosUsuario"))
-
-// localStorage.setItem("DatosUsuario", JSON.stringify(dataArray));
+let userArray = []; 
 
 const sessionArray = []
 
@@ -32,7 +27,9 @@ function validacionIMC(){
                  <p style="color: #67b0d1";"><strong>${ImcClasificacion(imc)}</strong></p>`
             )
             $(`#div_imc`).fadeIn("slow")}, 200);
-        sessionArray.push(imc, ImcClasificacion(imc));
+            
+            let datosImc = {Imc: imc, ImcClasificacion: ImcClasificacion(imc)}
+            sessionArray.push(datosImc);
     }
     
     else{
@@ -148,7 +145,17 @@ function validacionFC(e){
             <p>FC Zona 5: <strong style="color: #67b0d1;">${z90} - ${fcMax} ppm</strong></p>
             </div>`);
             $(`.div_fc`).fadeIn("slow")}, 200);
-            sessionArray.push(fcEdad, fcRep, z50, z60, z70, z80, z90, fcMax);
+
+            let datosFc = { fcEdad: fcEdad, 
+                            fcRep: fcRep,
+                            fcMax: fcMax,
+                            z1: `${z50} - ${z60}`,
+                            z2: `${z60} - ${z70}`,
+                            z3: `${z70} - ${z80}`,
+                            z4: `${z80} - ${z90}`,
+                            z5: `${z90} - ${fcMax}`
+                        }
+            sessionArray.push(datosFc);
     }else{
         alert("No ingresaste todos los campos requeridos");
     }

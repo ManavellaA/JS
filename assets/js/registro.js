@@ -1,8 +1,8 @@
 class User{
-  constructor(datos, locacion, user, pass){
+  constructor(datos, locacion, usuario , pass){
       this.datos = datos;
       this.locacion = locacion;
-      this.user = user;
+      this.usuario = usuario;
       this.pass = pass;
   }
 }
@@ -11,11 +11,18 @@ class User{
 function reg() {  
 document.getElementById(`registrar`).addEventListener("click", () => {    
   modalSec();
-  verPass();
+  // verPass();
   verificacion();
 });
 }
 reg();
+
+function volver() { 
+  document.getElementById("volver").addEventListener("click", () => {
+    modalStd();
+    reg()
+  });
+ }
 
 function modalSec(){
   $(`.apend`).html(
@@ -58,7 +65,7 @@ function modalSec(){
       `
   );
   verPass();
-  
+  volver();
 }
 
 function modalStd(){
@@ -90,6 +97,42 @@ function modalStd(){
   verPass();
 };
 
+
+function verificacion(){
+  document.getElementById(`click_registro`).addEventListener("click", function(e) {
+    e.preventDefault();
+    let nombre = document.getElementById("nombre").value
+    let apellido = document.getElementById("apellido").value
+    let provincia = document.getElementById("provincia").value
+    let ciudad = document.getElementById("ciudad").value
+    let calle = document.getElementById("calle").value
+    let numero = document.getElementById("num_calle").value
+    let usuario = document.getElementById("usuario").value
+    let pass = document.getElementById("pass").value
+    let estado = true
+    
+    if(!nombre || !apellido || !provincia || !ciudad || !calle || !numero || !usuario || !pass){
+      alert("falta completar un campo");
+      verificacion();
+    }
+    else{
+      userArray = JSON.parse(localStorage.getItem("usuarios"))
+      for (let busqueda of userArray){
+        if(busqueda.usuario === usuario.toUpperCase()){
+          alert("el usuario esta en uso");
+          estado = false
+        }
+      }  
+      if(estado){ 
+        let datos = `${nombre} ${apellido}`
+        let locacion = `${provincia}, ${ciudad}, ${calle} ${numero}`
+        userArray.push(new User(datos, locacion, usuario, pass))
+        RegExitoso();
+      }
+    }
+  });
+}
+
 function RegExitoso(){ 
     $(`.apend`).html(
         `
@@ -108,6 +151,7 @@ function RegExitoso(){
       </div>
     `)
     $(`.p_img_form`).fadeIn(300)
+    localStorage.setItem("usuarios", JSON.stringify(userArray))
     setTimeout(() => {
       $(`.p_img_form`).fadeOut(300)
     }, 2000);
@@ -117,47 +161,6 @@ function RegExitoso(){
       iniciarSession();
     }, 2500);
  }
-
-function verificacion(){
-  document.getElementById("volver").addEventListener("click", () => {
-    modalStd();
-    reg()
-  });
-
-  document.getElementById(`click_registro`).addEventListener("click", function(e) {
-    e.preventDefault();
-    let nombre = document.getElementById("nombre").value
-    let apellido = document.getElementById("apellido").value
-    let provincia = document.getElementById("provincia").value
-    let ciudad = document.getElementById("ciudad").value
-    let calle = document.getElementById("calle").value
-    let numero = document.getElementById("num_calle").value
-    let usuario = document.getElementById("usuario").value
-    let pass = document.getElementById("pass").value
-    let estado = true
-
-    if(!nombre || !apellido || !provincia || !ciudad || !calle || !numero || !usuario || !pass){
-      alert("falta completar un campo");
-      modalSec();
-      verificacion();
-    }
-    else{
-      for (let busqueda of userArray){
-        if(busqueda.user === usuario.toUpperCase()){
-          alert("el usuario esta en uso");
-          estado = false
-        }
-      }  
-      if(estado){ 
-          let datos = `${nombre} ${apellido}`
-          let locacion = `${provincia}, ${ciudad}, ${calle} ${numero}`
-          let user = new User(datos, locacion, usuario, pass);
-          userArray.push(user)
-          RegExitoso();
-      }
-    }
-  });
-}
 
 //----------------------------Efecto vista de Contraseña-----------------//
 function verPass(){

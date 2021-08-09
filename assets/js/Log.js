@@ -19,9 +19,10 @@ function validacion() {
   }
 
   if(estado){
+      userArray = JSON.parse(localStorage.getItem("usuarios"))
       for (let busqueda of userArray){
         // normalmente tendria que enviar la info de logueo a Back-end a travez de una API
-        if(busqueda.user === usuario.toUpperCase() && busqueda.pass === pass){
+        if(busqueda.usuario === usuario.toUpperCase() && busqueda.pass === pass){
           let msj = {usuario:usuario, pass:pass};
           log = false
           ajax(msj, usuario);
@@ -91,7 +92,13 @@ function cerrarSession() {
   $(`#guardar`).click(function (e) { 
     e.preventDefault();
     let sumaTiempos = localStorage.getItem("Promedios")
-    sessionArray.push(sumaTiempos/i);
+    let datosCiclo = {ciclos: i,
+                      ciclosSuma: sumaTiempos,
+                      ciclosPromedio: sumaTiempos/i,                
+    }
+    sessionArray.push(datosCiclo);
+    sessionArray.unshift(new Date());
+    localStorage.setItem("SessionUsuario", JSON.stringify(sessionArray))
   });
 
   }
