@@ -1,32 +1,32 @@
-class User{
-  constructor(datos, locacion, usuario , pass){
-      this.datos = datos;
-      this.locacion = locacion;
-      this.usuario = usuario;
-      this.pass = pass;
+class User {
+  constructor(datos, locacion, usuario, pass) {
+    this.datos = datos;
+    this.locacion = locacion;
+    this.usuario = usuario;
+    this.pass = pass;
   }
 }
 
 //-------------------------Registro de Usuarios---------------------//
-function reg() {  
-document.getElementById(`registrar`).addEventListener("click", () => {    
-  modalSec();
-  // verPass();
-  verificacion();
-});
+function reg() {
+  document.getElementById(`registrar`).addEventListener("click", () => {
+    modalSec();
+    // verPass();
+    verificacion();
+  });
 }
 reg();
 
-function volver() { 
+function volver() {
   document.getElementById("volver").addEventListener("click", () => {
     modalStd();
     reg()
   });
- }
+}
 
-function modalSec(){
+function modalSec() {
   $(`.apend`).html(
-      `
+    `
       <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">
         Registro
@@ -68,7 +68,7 @@ function modalSec(){
   volver();
 }
 
-function modalStd(){
+function modalStd() {
   $(`.apend`).html(
     `
       <div class="modal-header">
@@ -98,8 +98,8 @@ function modalStd(){
 };
 
 
-function verificacion(){
-  document.getElementById(`click_registro`).addEventListener("click", function(e) {
+function verificacion() {
+  document.getElementById(`click_registro`).addEventListener("click", function (e) {
     e.preventDefault();
     let nombre = document.getElementById("nombre").value
     let apellido = document.getElementById("apellido").value
@@ -110,22 +110,22 @@ function verificacion(){
     let usuario = document.getElementById("usuario").value
     let pass = document.getElementById("pass").value
     let estado = true
-    
-    if(!nombre || !apellido || !provincia || !ciudad || !calle || !numero || !usuario || !pass){
+
+    if (!nombre || !apellido || !provincia || !ciudad || !calle || !numero || !usuario || !pass) {
       alert("falta completar un campo");
       verificacion();
     }
-    else{
+    else {
       userArray = JSON.parse(localStorage.getItem("usuarios"))
-      if(userArray !== null){
-        for (let busqueda of userArray){
-          if(busqueda.usuario === usuario.toUpperCase()){
+      if (userArray !== null) {
+        for (let busqueda of userArray) {
+          if (busqueda.usuario === usuario.toUpperCase()) {
             alert("el usuario esta en uso");
             estado = false
           }
         }
-      }else{userArray = []}  
-      if(estado){ 
+      } else { userArray = [] }
+      if (estado) {
         let datos = `${nombre} ${apellido}`
         let locacion = `${provincia}, ${ciudad}, ${calle} ${numero}`
         userArray.push(new User(datos, locacion, usuario, pass))
@@ -135,9 +135,9 @@ function verificacion(){
   });
 }
 
-function RegExitoso(){ 
-    $(`.apend`).html(
-        `
+function RegExitoso() {
+  $(`.apend`).html(
+    `
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
           Registro
@@ -152,27 +152,26 @@ function RegExitoso(){
         </div>
       </div>
     `)
-    $(`.p_img_form`).fadeIn(300)
-    localStorage.setItem("usuarios", JSON.stringify(userArray))
-    setTimeout(() => {
-      $(`.p_img_form`).fadeOut(300)
-    }, 2000);
-    setTimeout(() => {
-      modalStd();
-      reg();
-      iniciarSession();
-    }, 2500);
- }
+  $(`.p_img_form`).fadeIn(300)
+  localStorage.setItem("usuarios", JSON.stringify(userArray))
+  setTimeout(() => {
+    $(`.p_img_form`).fadeOut(300)
+  }, 2000);
+  setTimeout(() => {
+    modalStd();
+    reg();
+    iniciarSession();
+  }, 2500);
+}
 
 //----------------------------Efecto vista de Contraseña-----------------//
-function verPass(){
-    document.getElementById(`ver`).addEventListener("mouseover", () => {
-      document.getElementById(`pass`).setAttribute(`type`,`text`);
+function verPass() {
+  document.getElementById(`ver`).addEventListener("mouseover", () => {
+    document.getElementById(`pass`).setAttribute(`type`, `text`);
   });
   document.getElementById(`ver`).addEventListener("mouseleave", () => {
-      document.getElementById(`pass`).setAttribute(`type`,`password`);
+    document.getElementById(`pass`).setAttribute(`type`, `password`);
   });
   //-----------------------------------------------------------------------//
 }
 verPass();
-  

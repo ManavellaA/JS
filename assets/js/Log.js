@@ -1,62 +1,62 @@
 //-------------------------------Inicio de Session----------------------------//
-function iniciarSession() {  
-document.getElementById(`iniciarSession`).addEventListener("click", function (e) {
+function iniciarSession() {
+  document.getElementById(`iniciarSession`).addEventListener("click", function (e) {
     e.preventDefault();
     validacion();
-});
+  });
 }
 iniciarSession();
 
-function validacion() { 
+function validacion() {
   let usuario = document.getElementById(`usuario`).value
   let pass = document.getElementById(`pass`).value
   let estado = true;
   let log = true;
 
-  if(!usuario || !pass){
-      alert("Falta completar un campo");
-      estado = false
+  if (!usuario || !pass) {
+    alert("Falta completar un campo");
+    estado = false
   }
 
-  if(estado){
-      userArray = JSON.parse(localStorage.getItem("usuarios"))
-      for (let busqueda of userArray){
-        // normalmente tendria que enviar la info de logueo a Back-end a travez de una API
-        if(busqueda.usuario === usuario && busqueda.pass === pass){
-          let msj = {usuario:usuario, pass:pass};
-          log = false
-          ajax(msj, usuario);
-        }
+  if (estado) {
+    userArray = JSON.parse(localStorage.getItem("usuarios"))
+    for (let busqueda of userArray) {
+      // normalmente tendria que enviar la info de logueo a Back-end a travez de una API
+      if (busqueda.usuario === usuario && busqueda.pass === pass) {
+        let msj = { usuario: usuario, pass: pass };
+        log = false
+        ajax(msj, usuario);
       }
-      if(log){
-          alert("Usuario no Registrado");
-      }
+    }
+    if (log) {
+      alert("Usuario no Registrado");
+    }
   }
   document.getElementById(`usuario`).value = "";
   document.getElementById(`pass`).value = "";
 }
 
-function ajax(dato1, dato2){
+function ajax(dato1, dato2) {
   $.ajax({
     type: "get",
     url: "https://jsonplaceholder.typicode.com/posts",
     data: dato1,
     success: function () {
-        arrayFunc(dato2);
+      arrayFunc(dato2);
     },
-    complete: function(xhr) { console.log(xhr.status); },
+    complete: function (xhr) { console.log(xhr.status); },
   });
 }
 
 
-function arrayFunc(dato2){
+function arrayFunc(dato2) {
   $(`#btn-session`).text(`Hola, ${dato2}`);
   $(`.apend`).html(`
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">
         Hola, ${dato2}
       </h5>
-      <p>X</p>
+      <p style="border: 1px solid black; padding-left: 5px; padding-right: 5px" data-bs-dismiss="modal">X</p>
     </div>
     <div class="modal-body">
       <div class="row">
@@ -80,32 +80,33 @@ function arrayFunc(dato2){
   guardarDatos();
 }
 
-function btnUsuario() { 
+function btnUsuario() {
   document.getElementById(`#btn-session`).addEventListener("click", () => {
-    
-  arrayFunc();
-});
- }
 
-function cerrarSession() { 
-  $(`#cerrarSession`).click(function (e) { 
+    arrayFunc();
+  });
+}
+
+function cerrarSession() {
+  $(`#cerrarSession`).click(function (e) {
     e.preventDefault();
-    
+
   });
 
- }
+}
 
- function guardarDatos() { 
-  $(`#guardar`).click(function (e) { 
+function guardarDatos() {
+  $(`#guardar`).click(function (e) {
     e.preventDefault();
     let sumaTiempos = localStorage.getItem("Promedios")
-    let datosCiclo = {ciclos: i,
-                      ciclosSuma: sumaTiempos,
-                      ciclosPromedio: sumaTiempos/i,                
+    let datosCiclo = {
+      ciclos: i,
+      ciclosSuma: sumaTiempos,
+      ciclosPromedio: sumaTiempos / i,
     }
     sessionArray.push(datosCiclo);
     sessionArray.unshift(new Date());
     localStorage.setItem("SessionUsuario", JSON.stringify(sessionArray))
   });
 
-  }
+}
