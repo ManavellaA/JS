@@ -41,11 +41,10 @@ function ajax(dato1, dato2){
     type: "get",
     url: "https://jsonplaceholder.typicode.com/posts",
     data: dato1,
-    complete: function(xhr) { console.log(xhr.status); },
     success: function () {
         arrayFunc(dato2);
     },
-    
+    complete: function(xhr) { console.log(xhr.status); },
   });
 }
 
