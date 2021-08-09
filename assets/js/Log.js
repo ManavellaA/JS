@@ -80,6 +80,13 @@ function arrayFunc(dato2){
   guardarDatos();
 }
 
+function btnUsuario() { 
+  document.getElementById(`#btn-session`).addEventListener("click", () => {
+    
+  arrayFunc();
+});
+ }
+
 function cerrarSession() { 
   $(`#cerrarSession`).click(function (e) { 
     e.preventDefault();
