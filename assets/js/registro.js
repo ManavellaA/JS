@@ -116,14 +116,15 @@ function verificacion(){
       verificacion();
     }
     else{
-      if(userArray = JSON.parse(localStorage.getItem("usuarios")) !== null){
+      userArray = JSON.parse(localStorage.getItem("usuarios"))
+      if(userArray !== null){
         for (let busqueda of userArray){
           if(busqueda.usuario === usuario.toUpperCase()){
             alert("el usuario esta en uso");
             estado = false
           }
         }
-      }  
+      }else{userArray = []}  
       if(estado){ 
         let datos = `${nombre} ${apellido}`
         let locacion = `${provincia}, ${ciudad}, ${calle} ${numero}`
