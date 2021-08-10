@@ -2,6 +2,27 @@ let userArray = [];
 
 const sessionArray = []
 
+class objM {
+    constructor(nombre, email, asunto, contenido) {
+        this.nombre = nombre;
+        this.email = email;
+        this.asunto = asunto;
+        this.contenido = contenido;
+    }
+}
+
+class datosfc {
+    constructor(fcEdad, fcRep, fcMax, z1, z2, z3, z4 ,z5) {
+        this.fcEdad = fcEdad;
+        this.fcRep = fcRep;
+        this.fcMax = fcMax;
+        this.z1 = z1;
+        this.z2 = z2;
+        this.z3 = z3;
+        this.z4 = z4;
+        this.z5 = z5;
+    }
+}
 //-----------------------------------------------------------------------------//
 //---------------------------- Calculadora de IMC  ----------------------------//
 //-----------------------------------------------------------------------------//
@@ -123,6 +144,11 @@ function calcFc() {
 }
 calcFc();
 
+// function frecuenciaProm(fcRep, fcMax) {
+//     let z = [50, 60, 70, 80, 90];
+//     return z.map(z => Math.round((fcMax - fcRep) * (z/100) + fcRep));
+// }
+
 function validacionFC(e) {
     e.preventDefault();
     fcEdad = parseInt($(`#calc_fcEdad`).val());
@@ -135,6 +161,7 @@ function validacionFC(e) {
         let z70 = Math.round(((fcMax - fcRep) * 0.7) + fcRep);
         let z80 = Math.round(((fcMax - fcRep) * 0.8) + fcRep);
         let z90 = Math.round(((fcMax - fcRep) * 0.9) + fcRep);
+        // frecuenciaProm(fcRep, fcMax);
         $(`.div_fc`).fadeOut("fast");
         setTimeout(() => {
             $(`.div_fc`).html(
@@ -148,17 +175,17 @@ function validacionFC(e) {
             $(`.div_fc`).fadeIn("slow")
         }, 200);
 
-        let datosFc = {
-            fcEdad: fcEdad,
-            fcRep: fcRep,
-            fcMax: fcMax,
-            z1: `${z50} - ${z60}`,
-            z2: `${z60} - ${z70}`,
-            z3: `${z70} - ${z80}`,
-            z4: `${z80} - ${z90}`,
-            z5: `${z90} - ${fcMax}`
-        }
-        sessionArray.push(datosFc);
+        // let datosFc = {
+        //     fcEdad: fcEdad,
+        //     fcRep: fcRep,
+        //     fcMax: fcMax,
+        //     z1: `${z50} - ${z60}`,
+        //     z2: `${z60} - ${z70}`,
+        //     z3: `${z70} - ${z80}`,
+        //     z4: `${z80} - ${z90}`,
+        //     z5: `${z90} - ${fcMax}`
+        // }
+        sessionArray.push(new datosFc(fcEdad, fcRep, fcMax, z1, z2, z3, z4 ,z5));
     } else {
         alert("No ingresaste todos los campos requeridos");
     }
@@ -195,7 +222,7 @@ function envioMensaje(e) {
         $.ajax({
             type: "post",
             url: "https://jsonplaceholder.typicode.com/posts",
-            data: objMensaje(nombre, email, asunto, contenido),
+            data: new objM(nombre, email, asunto, contenido),
             success: function () {
                 setTimeout(() => {
                     $(`.insert2`).html(
@@ -211,16 +238,4 @@ function envioMensaje(e) {
 function anim_espera() {
     $(`.p_form`).animate({ opacity: '1' })
         .animate({ opacity: '0' })
-}
-
-function objMensaje(dato1, dato2, dato3, dato4) {
-    class objM {
-        constructor(dato1, dato2, dato3, dato4) {
-            this.nombre = dato1;
-            this.email = dato2;
-            this.asunto = dato3;
-            this.contenido = dato4;
-        }
-    }
-    return new objM(dato1, dato2, dato3, dato4)
 }

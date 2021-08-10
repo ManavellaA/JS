@@ -26,42 +26,41 @@ function volver() {
 
 function modalSec() {
   $(`.apend`).html(
-    `
-      <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">
-        Registro
-      </h5>
-    </div>
-    <div class="modal-body">
-      <div class="d-grid gap-3 justify-content-center">
-        <div class="form-group d-grid gap-3">
-          <label>Datos Personales:</label>
-          <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
-          <input type="text" id="apellido" class="form-control" placeholder="Apellido" required>
-        </div>
-        
-        <div class="form-group d-grid gap-3">
-          <label>Locación:</label>
-            <input type="text" id="provincia" class="form-control d-flex" placeholder="Provincia" required>
-            <input type="text" id="ciudad" class="form-control d-flex" placeholder="Ciudad" required>
-            <input type="text" id="calle" class="form-control d-flex" placeholder="Calle" required>
-            <input type="number" id="num_calle" class="form-control d-flex" placeholder="N°" required>
-        </div>
-        
-        <div class="form-group d-grid gap-3">
-        <label>Sessión:</label>
-          <input type="text" id="usuario" class="form-control" placeholder="Usuario" required>
-          <input type="password" id="pass" class="form-control" placeholder="Contraseña" required>
-          <div class="d-flex justify-content-center align-items-center"><label id="ver">Ver</label></div>  
+    ` <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Registro
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="d-grid gap-3 justify-content-center">
+          <div class="form-group d-grid gap-3">
+            <label>Datos Personales:</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
+            <input type="text" id="apellido" class="form-control" placeholder="Apellido" required>
+          </div>
+
+          <div class="form-group d-grid gap-3">
+            <label>Locación:</label>
+              <input type="text" id="provincia" class="form-control d-flex" placeholder="Provincia" required>
+              <input type="text" id="ciudad" class="form-control d-flex" placeholder="Ciudad" required>
+              <input type="text" id="calle" class="form-control d-flex" placeholder="Calle" required>
+              <input type="number" id="num_calle" class="form-control d-flex" placeholder="N°" required>
+          </div>
+
+          <div class="form-group d-grid gap-3">
+            <label>Sessión:</label>
+            <input type="text" id="usuario" class="form-control" placeholder="Usuario" required>
+            <input type="password" id="pass" class="form-control" placeholder="Contraseña" required>
+            <div class="d-flex justify-content-center align-items-center"><label id="ver">Ver</label></div>  
+          </div>
         </div>
       </div>
-    </div>
-    <div class="modal-footer">
-    <a href="#" id="volver">Volver</a>
+      <div class="modal-footer">
+        <a href="#" id="volver">Volver</a>
         <button type="button" class="btn btn-primary" id="click_registro" ">
           Registrarme!
         </button>
-    </div>
+      </div>
       `
   );
   verPass();
@@ -70,29 +69,29 @@ function modalSec() {
 
 function modalStd() {
   $(`.apend`).html(
-    `
-      <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">
-        Inicio Session
-      </h5>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-md-6 form-group">
-          <input type="text" id="usuario" class="form-control" placeholder="Usuario" required>
-        </div>
-        <div class="col-md-6 form-group mt-3 mt-md-0">
-          <input type="password" id="pass" class="form-control" placeholder="Contraseña" required>
-          <div class="d-flex justify-content-center align-items-center"><label id="ver">Ver</label></div> 
-        </div>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#" id="registrar" style="margin-right: ">Registrarme</a>
-        <button type="button" class="btn btn-primary" id="iniciarSession" data-bs-dismiss="modal">
-          Iniciar
-        </button>
-    `
+    `<div class="modal-header">
+       <h5 class="modal-title" id="exampleModalLabel">
+         Inicio Session
+       </h5>
+     </div>
+     <div class="modal-body">
+       <div class="row">
+         <div class="col-md-6 form-group">
+           <input type="text" id="usuario" class="form-control" placeholder="Usuario" required>
+         </div>
+         <div class="col-md-6 form-group mt-3 mt-md-0">
+           <input type="password" id="pass" class="form-control" placeholder="Contraseña" required>
+           <div class="d-flex justify-content-center align-items-center"><label id="ver">Ver</label></div> 
+         </div>
+       </div>
+     </div>
+     <div class="modal-footer">
+       <a href="#" id="registrar" style="margin-right: ">Registrarme</a>
+       <button type="button" class="btn btn-primary" id="iniciarSession" data-bs-dismiss="modal">
+         Iniciar
+       </button>
+     </div>
+    `    
   );
   verPass();
 };
