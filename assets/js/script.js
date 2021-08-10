@@ -2,6 +2,8 @@ let userArray = [];
 
 const sessionArray = []
 
+let login = false
+
 class objM {
     constructor(nombre, email, asunto, contenido) {
         this.nombre = nombre;

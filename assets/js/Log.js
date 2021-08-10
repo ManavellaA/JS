@@ -42,12 +42,18 @@ function ajax(msj, usuario) {
     url: "https://jsonplaceholder.typicode.com/posts",
     data: msj,
     success: function () {
+      login = true
       arrayFunc(usuario);
     },
     complete: function (xhr) { console.log(xhr.status); },
   });
 }
 
+function btnUsuario() {
+  document.getElementById(`#btn-session`).addEventListener("click", () => {
+    arrayFunc();
+  });
+}
 
 function arrayFunc(usuario) {
   $(`#btn-session`).text(`Hola,  ${usuario}!`);
@@ -61,7 +67,8 @@ function arrayFunc(usuario) {
     <div class="modal-body">
       <div class="row">
         <div class="col-md-6 form-group">
-          <p id="p-imc" class="">IMC:</p>
+          <div id="p-imc" class="">
+          </div>
           <p id="p-pasada" class="">PASADA:</p>
           <p id="p-fc" class="">FC:</p>
         </div>
@@ -77,36 +84,41 @@ function arrayFunc(usuario) {
     </div>
   `);
   cerrarSession();
-  guardarDatos();
-}
-
-function btnUsuario() {
-  document.getElementById(`#btn-session`).addEventListener("click", () => {
-
-    arrayFunc();
-  });
+  clickGuardar();
 }
 
 function cerrarSession() {
-  $(`#cerrarSession`).click(function (e) {
-    e.preventDefault();
-
+  $(`#cerrarSession`).click(() => {
+    guardarDatos();
+    modalStd();
+    reg();
+    iniciarSession();
+    setTimeout(() => {
+      $(`#btn-session`).text(`Iniciar Session`);
+    }, 200);
+    login = false
   });
+}
 
+function clickGuardar(){
+  $(`#guardar`).click(() => {
+    guardarDatos();
+  })
 }
 
 function guardarDatos() {
-  $(`#guardar`).click(function (e) {
-    e.preventDefault();
-    let sumaTiempos = localStorage.getItem("Promedios")
-    let datosCiclo = {
-      ciclos: i,
-      ciclosSuma: sumaTiempos,
-      ciclosPromedio: sumaTiempos / i,
+    if(i !== 0){
+      let sumaTiempos = localStorage.getItem("Promedios")
+      let datosCiclo = {
+        ciclos: i,
+        ciclosSuma: sumaTiempos,
+        ciclosPromedio: sumaTiempos / i,
+      }
+      sessionArray.push(datosCiclo);
     }
-    sessionArray.push(datosCiclo);
-    sessionArray.unshift(new Date());
-    localStorage.setItem("SessionUsuario", JSON.stringify(sessionArray))
-  });
+    let hoy = new Date();
+    hoy = hoy.toDateString()
 
+    sessionArray.unshift(hoy);
+    localStorage.setItem("SessionUsuario", JSON.stringify(sessionArray))
 }

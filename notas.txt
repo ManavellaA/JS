@@ -1,0 +1,111 @@
+
+[TUTOR] Nahuel Lezcano  20:32
+No me tomaba el usuario cuando me queria loggear y tuve que sacarle un toUpperCase() a una funcion del log
+20:33
+Pero bueno, ahora te comento del codigo general
+
+Andrés Raúl Manavella  20:33
+ahora lo voy a revisar
+20:33
+dale gracias
+20:35
+todavia lo estoy terminando la parte de el panel de la session pero lo demas quedo andando todo
+
+[TUTOR] Nahuel Lezcano  20:36
+Sisi.. el resto se ve que funciona bien.. mas que nada quiero leer a fondo todo el codigo para evitar algun error muy grave
+20:36
+Lo primero que te puedo decir a simple vista es que hagas una revision de que las identaciones o tabulaciones esten ok
+
+Andrés Raúl Manavella  20:42
+ok
+
+[TUTOR] Nahuel Lezcano  20:54
+En la linea 140 a 145 repetis mucho codigo que puede cambiarse por una funcion que, por mas que te genere algun espacio mas en memoria, te permita escibir menos, algo como:
+function frecuencia (numero) {
+  fcEdad = parseInt($(`#calc_fcEdad`).val());
+  fcRep = parseInt($(`#calc_fcReposo`).val());
+  return Math.round((fcMax - fcRep) * numero + fcRep);
+;
+Para luego hacer algo como:
+let z50 = frecuencia(0.5);
+let z60 = frecuencia(0.6);
+etc...
+O incluso se puede mejorar usando arrays... mas o menos asi:
+function frecuenciaProm() {
+  fcEdad = parseInt($(`#calc_fcEdad`).val());
+  fcRep = parseInt($(`#calc_fcReposo`).val());
+  let z = [50, 60, 70, 80, 90];
+  return z.map(z => Math.round((fcMax - fcRep) * (z/100) + fcRep;
+}
+No entiendo muy bien como funciona y que tanto se puede modificar el tema de la fcMax pero, para mostrar en el html podrias hacer algo como:
+let [z50, z60, z70, z80, z90] = frecuenciaProm();
+// esto de arriba se llama destructurar array
+Despues debe haber alguna manera para mejorar el html pero por ahora podrias quedarte con estas formas
+
+Andrés Raúl Manavella  21:03
+si no me enfoque mucho en el html, solo lo deje medianamente aceptable.
+21:04
+lo voy a iterar con un map entonces a esa parte
+
+[TUTOR] Nahuel Lezcano  21:05
+Dale, fijate si queres de esa manera y de paso te pones en forma para react que trabaja casi todo de esta manera
+21:05
+te vas a tener que amigar con los array jaja
+
+Andrés Raúl Manavella  21:06
+en realidad entre ayer y hoy me estuve re-afianzando con los arrays, storage y objetos
+21:07
+es impresionante como te olvidas de los detalles de sus construcciones cuando dejas de escribir codigo por un tiempo
+21:07
+no hice nada en semana y algo
+
+[TUTOR] Nahuel Lezcano  21:07
+Si, hay que mantenerse haciendo constantemente, mas ahora que estas aprendiendo... yo me mantengo tocando codigo de los alumnos jaja
+21:07
+Otra cosa, para la linea 160 del archivo script, te recomiendo cerarte una clase para los datos porque ese objeto literal que tenes ahi es bastante largo
+Te conviene crearte una clase y despues instancias un objeto desde ahi solo poniendo los datos
+21:08
+crearte*
+21:09
+Y en la funcion objMensaje del mismo archivo te pasa lo mismo que hablamos el otro dia sobre las clases dentro de las funciones
+Nuevo
+21:11
+A las funciones verificacion() y validacion() les pondria un nombre un poco mas especifico porque medio que marean, por mas que esten en un archivo separado
+21:14
+Despues el resto se ve bien, hay algo en la sentencia
+if (!nombre || !apellido || !provincia || !ciudad || !calle || !numero || !usuario || !pass)
+que me hace mucho ruido pero no se me ocurre otra manera de hacerlo sin romper el codigo asi que lo dejamos
+marca_de_verificación_blanca
+ojos
+manos_levantadas::tono_de_piel-2
+
+
+
+
+
+
+Andrés Raúl Manavella  21:20
+ok buenisimo
+21:20
+ahora me pongo con eso y a terminar la ultima parte pero ya lo tengo medianamente cerrado
+21:21
+muchas gracias por el feedback me sirvió un monton
+
+
+Enviar mensaje a [TUTOR] Nahuel Lezcano
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
