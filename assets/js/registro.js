@@ -7,12 +7,10 @@ class User {
   }
 }
 
-//-------------------------Registro de Usuarios---------------------//
 function reg() {
   document.getElementById(`registrar`).addEventListener("click", () => {
     modalSec();
-    // verPass();
-    verificacion();
+    clickReg();
   });
 }
 reg();
@@ -91,13 +89,12 @@ function modalStd() {
          Iniciar
        </button>
      </div>
-    `    
+    `
   );
   verPass();
-};
+}
 
-
-function verificacion() {
+function clickReg() {
   document.getElementById(`click_registro`).addEventListener("click", function (e) {
     e.preventDefault();
     let nombre = document.getElementById("nombre").value
@@ -112,7 +109,7 @@ function verificacion() {
 
     if (!nombre || !apellido || !provincia || !ciudad || !calle || !numero || !usuario || !pass) {
       alert("falta completar un campo");
-      verificacion();
+      clickReg();
     }
     else {
       userArray = JSON.parse(localStorage.getItem("usuarios"))

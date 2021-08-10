@@ -12,15 +12,11 @@ class objM {
 }
 
 class datosfc {
-    constructor(fcEdad, fcRep, fcMax, z1, z2, z3, z4 ,z5) {
+    constructor(fcEdad, fcRep, fcMax, z) {
         this.fcEdad = fcEdad;
         this.fcRep = fcRep;
         this.fcMax = fcMax;
-        this.z1 = z1;
-        this.z2 = z2;
-        this.z3 = z3;
-        this.z4 = z4;
-        this.z5 = z5;
+        this.z = z;
     }
 }
 //-----------------------------------------------------------------------------//
@@ -144,11 +140,6 @@ function calcFc() {
 }
 calcFc();
 
-// function frecuenciaProm(fcRep, fcMax) {
-//     let z = [50, 60, 70, 80, 90];
-//     return z.map(z => Math.round((fcMax - fcRep) * (z/100) + fcRep));
-// }
-
 function validacionFC(e) {
     e.preventDefault();
     fcEdad = parseInt($(`#calc_fcEdad`).val());
@@ -156,36 +147,24 @@ function validacionFC(e) {
     if (fcEdad > 0 && fcRep > 0) {
         let fcMax = 208 - (0.7 * fcEdad);
         fcMax = Math.round(fcMax);
-        let z50 = Math.round(((fcMax - fcRep) * 0.5) + fcRep);
-        let z60 = Math.round(((fcMax - fcRep) * 0.6) + fcRep);
-        let z70 = Math.round(((fcMax - fcRep) * 0.7) + fcRep);
-        let z80 = Math.round(((fcMax - fcRep) * 0.8) + fcRep);
-        let z90 = Math.round(((fcMax - fcRep) * 0.9) + fcRep);
-        // frecuenciaProm(fcRep, fcMax);
+
+        let z = [50, 60, 70, 80, 90];
+        z = z.map(z => Math.round((fcMax - fcRep) * (z / 100) + fcRep));
+
         $(`.div_fc`).fadeOut("fast");
         setTimeout(() => {
             $(`.div_fc`).html(
                 `<div class="bx">
-            <p>FC Zona 1: <strong style="color: #67b0d1;">${z50} - ${z60} ppm</strong></p>
-            <p>FC Zona 2: <strong style="color: #67b0d1;">${z60} - ${z70} ppm</strong></p>
-            <p>FC Zona 3: <strong style="color: #67b0d1;">${z70} - ${z80} ppm</strong></p>
-            <p>FC Zona 4: <strong style="color: #67b0d1;">${z80} - ${z90} ppm</strong></p>
-            <p>FC Zona 5: <strong style="color: #67b0d1;">${z90} - ${fcMax} ppm</strong></p>
+            <p>FC Zona 1: <strong style="color: #67b0d1;">${z[0]} - ${z[1]} ppm</strong></p>
+            <p>FC Zona 2: <strong style="color: #67b0d1;">${z[1]} - ${z[2]} ppm</strong></p>
+            <p>FC Zona 3: <strong style="color: #67b0d1;">${z[2]} - ${z[3]} ppm</strong></p>
+            <p>FC Zona 4: <strong style="color: #67b0d1;">${z[3]} - ${z[4]} ppm</strong></p>
+            <p>FC Zona 5: <strong style="color: #67b0d1;">${z[4]} - ${fcMax} ppm</strong></p>
             </div>`);
             $(`.div_fc`).fadeIn("slow")
         }, 200);
 
-        // let datosFc = {
-        //     fcEdad: fcEdad,
-        //     fcRep: fcRep,
-        //     fcMax: fcMax,
-        //     z1: `${z50} - ${z60}`,
-        //     z2: `${z60} - ${z70}`,
-        //     z3: `${z70} - ${z80}`,
-        //     z4: `${z80} - ${z90}`,
-        //     z5: `${z90} - ${fcMax}`
-        // }
-        sessionArray.push(new datosFc(fcEdad, fcRep, fcMax, z1, z2, z3, z4 ,z5));
+        sessionArray.push(new datosfc(fcEdad, fcRep, fcMax, z));
     } else {
         alert("No ingresaste todos los campos requeridos");
     }

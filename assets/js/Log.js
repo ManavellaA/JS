@@ -36,25 +36,25 @@ function validacion() {
   document.getElementById(`pass`).value = "";
 }
 
-function ajax(dato1, dato2) {
+function ajax(msj, usuario) {
   $.ajax({
     type: "get",
     url: "https://jsonplaceholder.typicode.com/posts",
-    data: dato1,
+    data: msj,
     success: function () {
-      arrayFunc(dato2);
+      arrayFunc(usuario);
     },
     complete: function (xhr) { console.log(xhr.status); },
   });
 }
 
 
-function arrayFunc(dato2) {
-  $(`#btn-session`).text(`Hola, ${dato2}`);
+function arrayFunc(usuario) {
+  $(`#btn-session`).text(`Hola,  ${usuario}!`);
   $(`.apend`).html(`
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">
-        Hola, ${dato2}
+        Hola, ${usuario}
       </h5>
       <p style="border: 1px solid black; padding-left: 5px; padding-right: 5px" data-bs-dismiss="modal">X</p>
     </div>
