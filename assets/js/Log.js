@@ -49,12 +49,6 @@ function ajax(msj, usuario) {
   });
 }
 
-function btnUsuario() {
-  document.getElementById(`#btn-session`).addEventListener("click", () => {
-    arrayFunc();
-  });
-}
-
 function arrayFunc(usuario) {
   $(`#btn-session`).text(`Hola,  ${usuario}!`);
   $(`.apend`).html(`
@@ -67,10 +61,9 @@ function arrayFunc(usuario) {
     <div class="modal-body">
       <div class="row">
         <div class="col-md-6 form-group">
-          <div id="p-imc" class="">
-          </div>
-          <p id="p-pasada" class="">PASADA:</p>
-          <p id="p-fc" class="">FC:</p>
+          <p> Tus datos de hoy son:</p>
+          <p id="p-imc"> IMC: Todavia no realizado hoy</p>
+          <p id="p-imc-d"> IMC Clasificacion: Todavia no realizado hoy</p>
         </div>
       </div> 
     </div>
@@ -86,6 +79,16 @@ function arrayFunc(usuario) {
   cerrarSession();
   clickGuardar();
 }
+
+// function btnUsuario() {
+//   document.getElementById(`#btn-imc`).addEventListener("click", () => {
+//     if(sessionArray[0] !== undefined && login === true){
+//       $(`#p-imc`).text(`${sessionArray[0]}`);
+//       $(`#p-imc-d`).text(`${sessionArray[1]}`);
+//     }
+//   });
+// }
+// btnUsuario();
 
 function cerrarSession() {
   $(`#cerrarSession`).click(() => {
