@@ -30,7 +30,7 @@ function modalSec() {
           Registro
         </h5>
       </div>
-      <div class="modal-body">
+      <div class="modal-body append2">
         <div class="d-grid gap-3 justify-content-center">
           <div class="form-group d-grid gap-3">
             <label>Datos Personales:</label>
@@ -73,7 +73,7 @@ function modalStd() {
          Inicio Session
        </h5>
      </div>
-     <div class="modal-body">
+     <div class="modal-body append2">
        <div class="row">
          <div class="col-md-6 form-group">
            <input type="text" id="usuario" class="form-control" placeholder="Usuario" required>

@@ -53,42 +53,139 @@ function arrayFunc(usuario) {
   $(`#btn-session`).text(`Hola,  ${usuario}!`);
   $(`.apend`).html(`
     <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">
+      <h5 class="modal-title" id="exampleModalLabel" tyle="font-size: 3.5vh;">
         Hola, ${usuario}
       </h5>
-      <p style="border: 1px solid black; padding-left: 5px; padding-right: 5px" data-bs-dismiss="modal">X</p>
+      <button type="button" class="btn btn-primary btn_cancel" data-bs-dismiss="modal">X</button>
     </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-md-6 form-group">
-          <p> Tus datos de hoy son:</p>
-          <p id="p-imc"> IMC: Todavia no realizado hoy</p>
-          <p id="p-imc-d"> IMC Clasificacion: Todavia no realizado hoy</p>
-        </div>
-      </div> 
+    <div class="modal-body append2">
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="guardar" data-bs-dismiss="modal">
-          Guardar Datos
-        </button>
-        <button type="button" class="btn btn-primary" id="cerrarSession" data-bs-dismiss="modal">
-          Cerrar Session 
-        </button>
+      <button type="button" class="btn btn-primary" id="guardar" data-bs-dismiss="modal">
+        Guardar Datos
+      </button>
+      <button type="button" class="btn btn-primary" id="cerrarSession" data-bs-dismiss="modal">
+        Cerrar Session 
+      </button>
     </div>
+    `);
+  append2();
+}
+
+function append2() {
+  $(`.append2`).html(`
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <p style="font-size: 2.5vh; text-decoration: underline;">Bienvenido a  tu panel de información</p>
+          <p>Tus datos de hoy son:</p>
+          <div class="col-md-12 form-group">
+          <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed p-imc" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Informacion sobre tu IMC
+                      </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body datos_imc">
+                          <p><strong>Todavia no lo realizaste!!</strong></p>
+                      </div>
+                  </div>
+              </div>
+              <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                      <button class="accordion-button collapsed p-ciclo" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Ciclo de entrenamiento Running
+                      </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                      <div class="accordion-body datos_ciclo">
+                        <p><strong>Todavia no lo realizaste!!</strong></p>
+                      </div>
+                  </div>
+              </div>
+              <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                      <button class="accordion-button collapsed p-fc" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Zonas de Trabajo FC
+                      </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                      <div class="accordion-body datos_fc">
+                      <p><strong>Todavia no lo realizaste!!</strong></p>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>    
+        </div>
+      </div> 
+    
   `);
   cerrarSession();
   clickGuardar();
+  btn_imc();
+  btn_ciclo();
+  btn_fc();
 }
 
-// function btnUsuario() {
-//   document.getElementById(`#btn-imc`).addEventListener("click", () => {
-//     if(sessionArray[0] !== undefined && login === true){
-//       $(`#p-imc`).text(`${sessionArray[0]}`);
-//       $(`#p-imc-d`).text(`${sessionArray[1]}`);
-//     }
-//   });
-// }
-// btnUsuario();
+function btn_imc() {
+  $(`.p-imc`).click(() => {
+    for (const imc of sessionArray) {
+      if (imc.Imc !== undefined && login === true) {
+        $(`.datos_imc`).html(`
+          <p><strong>Tu IMC es:</strong> ${imc.Imc}</p>
+          <p><strong>Para la OMS entras dentro de la denominación:</strong> ${imc.ImcClasificacion}</p>
+          `)
+      }
+    }
+  });
+}
+
+function btn_ciclo() {
+  $(`.p-ciclo`).click(() => {
+    for (const ciclo of sessionArray) {
+      if (ciclo.ciclos !== undefined && login === true) {
+        $(`.datos_ciclo`).html(`
+          <p><strong>Cantidad de Ciclos:</strong> ${ciclo.ciclos}</p>
+          <p><strong>Promedio general:</strong> ${ciclo.ciclosPromedio}</p>
+          <p><strong>Tiempo Total:</strong> ${ciclo.ciclosSuma}</p>
+          `)
+      }
+    }
+  });
+}
+
+function btn_fc() {
+  $(`.p-fc`).click(() => {
+    for (const fc of sessionArray) {
+      if (fc.fcEdad !== undefined && login === true) {
+        $(`.datos_fc`).html(`
+          <p><strong>Tu Edad la hora del calculo:</strong> ${fc.fcEdad} Años.</p>
+          <p><strong>Freciencia en reposo:</strong> ${fc.fcRep} ppm</p>
+          <p><strong>Freciencia Maxima:</strong> ${fc.fcMax} ppm</p>
+          <p><strong>Zona 1:</strong> ${fc.z[0]} - ${fc.z[1]} (Muy Suave: 50-60%)</p>
+          <p><strong>Zona 2:</strong> ${fc.z[1]} - ${fc.z[2]} (Suave: 60-70%)</p>
+          <p><strong>Zona 3:</strong> ${fc.z[2]} - ${fc.z[3]} (Moderada: 70-80%)</p>
+          <p><strong>Zona 4:</strong> ${fc.z[3]} - ${fc.z[4]} (Intensa: 80-90%)</p>
+          <p><strong>Zona 5:</strong> ${fc.z[4]} - ${fc.fcMax} (Limite: 90-100%)</p>
+          `)
+      }
+    }
+  });
+}
+
+function guardadoCiclo() {
+  if (i !== 0) {
+    let sumaTiempos = localStorage.getItem("Promedios")
+    let datosCiclo = {
+      ciclos: i,
+      ciclosSuma: sumaTiempos,
+      ciclosPromedio: sumaTiempos / i,
+    }
+    sessionArray.push(datosCiclo);
+  }
+}
 
 function cerrarSession() {
   $(`#cerrarSession`).click(() => {
@@ -103,25 +200,17 @@ function cerrarSession() {
   });
 }
 
-function clickGuardar(){
+function clickGuardar() {
   $(`#guardar`).click(() => {
     guardarDatos();
   })
 }
 
 function guardarDatos() {
-    if(i !== 0){
-      let sumaTiempos = localStorage.getItem("Promedios")
-      let datosCiclo = {
-        ciclos: i,
-        ciclosSuma: sumaTiempos,
-        ciclosPromedio: sumaTiempos / i,
-      }
-      sessionArray.push(datosCiclo);
-    }
-    let hoy = new Date();
-    hoy = hoy.toDateString()
+  guardadoCiclo();
+  let hoy = new Date();
+  hoy = hoy.toDateString()
 
-    sessionArray.unshift(hoy);
-    localStorage.setItem("SessionUsuario", JSON.stringify(sessionArray))
+  sessionArray.unshift(hoy);
+  localStorage.setItem("SessionUsuario", JSON.stringify(sessionArray))
 }
