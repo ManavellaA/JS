@@ -147,7 +147,7 @@ function btn_imc() {
 function btn_ciclo() {
   $(`.p-ciclo`).click(() => {
     for (const ciclo of sessionArray) {
-      if(c === false){
+      if (c === false) {
         guardadoCiclo();
       }
       if (ciclo.ciclos !== undefined && login === true) {
@@ -158,7 +158,7 @@ function btn_ciclo() {
           `)
       }
     }
-    
+
   });
 }
 
@@ -220,8 +220,8 @@ function guardarDatos() {
   let hoy = new Date();
   hoy = hoy.toDateString()
 
-// Lo Ideal seria mandar este array a un back-end a travez de una API, para que 
-// se guarden los datos del usuario en una base de datos y los pueda llamar como un historico pero no llegue a completar esa parte. 
+  // Lo Ideal seria mandar este array a un back-end a travez de una API, para que 
+  // se guarden los datos del usuario en una base de datos y los pueda llamar como un historico pero no llegue a completar esa parte. 
 
   sessionArray.unshift(hoy);
   localStorage.setItem("SessionUsuario", JSON.stringify(sessionArray))

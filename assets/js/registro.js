@@ -18,7 +18,7 @@ reg();
 function volver() {
   document.getElementById("volver").addEventListener("click", () => {
     modalStd();
-    reg() 
+    reg()
     iniciarSession();
   });
 }
