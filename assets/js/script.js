@@ -1,6 +1,6 @@
 let userArray = [];
 
-const sessionArray = []
+let sessionArray = []
 
 let login = false
 

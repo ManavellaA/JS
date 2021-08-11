@@ -206,6 +206,8 @@ function cerrarSession() {
       $(`#btn-session`).text(`Iniciar Session`);
     }, 200);
     login = false
+    sessionArray = [];
+    location.reload();
   });
 }
 
