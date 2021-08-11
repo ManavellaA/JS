@@ -2,7 +2,7 @@ let userArray = [];
 
 let sessionArray = []
 
-let login = false
+let i = 0;
 
 class objM {
     constructor(nombre, email, asunto, contenido) {
@@ -82,7 +82,6 @@ function ImcClasificacion(valor) {
 //---------------------------- Calculadora de pasadas  ----------------------------//
 //---------------------------------------------------------------------------------//
 
-let i = 0;
 function ciclo() {
     $(`#btn_pasada`).click(calcPasada);
     $(`#calc_pasada`).keydown(function (e) { if (e.keyCode === 13) { calcPasada(e); } });

@@ -1,5 +1,7 @@
 let c = false
 
+let login = false
+
 //-------------------------------Inicio de Session----------------------------//
 function iniciarSession() {
   document.getElementById(`iniciarSession`).addEventListener("click", function (e) {
