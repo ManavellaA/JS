@@ -167,7 +167,7 @@ function btn_fc() {
     for (const fc of sessionArray) {
       if (fc.fcEdad !== undefined && login === true) {
         $(`.datos_fc`).html(`
-          <p><strong>Tu Edad la hora del calculo:</strong> ${fc.fcEdad} Años.</p>
+          <p><strong>Tu Edad a la hora del calculo:</strong> ${fc.fcEdad} Años.</p>
           <p><strong>Freciencia en reposo:</strong> ${fc.fcRep} ppm</p>
           <p><strong>Freciencia Maxima:</strong> ${fc.fcMax} ppm</p>
           <p><strong>Zona 1:</strong> ${fc.z[0]} - ${fc.z[1]} (Muy Suave: 50-60%)</p>
