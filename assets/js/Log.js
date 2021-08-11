@@ -1,3 +1,5 @@
+let c = false
+
 //-------------------------------Inicio de Session----------------------------//
 function iniciarSession() {
   document.getElementById(`iniciarSession`).addEventListener("click", function (e) {
@@ -79,43 +81,43 @@ function append2() {
           <p style="font-size: 2.5vh; text-decoration: underline;">Bienvenido a  tu panel de información</p>
           <p>Tus datos de hoy son:</p>
           <div class="col-md-12 form-group">
-          <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                      <button class="accordion-button collapsed p-imc" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Informacion sobre tu IMC
-                      </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                      <div class="accordion-body datos_imc">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item mt-5">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed p-imc" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Informacion sobre tu IMC
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body datos_imc">
+                            <p><strong>Todavia no lo realizaste!!</strong></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mt-5">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed p-ciclo" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Ciclo de entrenamiento Running
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body datos_ciclo">
                           <p><strong>Todavia no lo realizaste!!</strong></p>
-                      </div>
-                  </div>
-              </div>
-              <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwo">
-                      <button class="accordion-button collapsed p-ciclo" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Ciclo de entrenamiento Running
-                      </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                      <div class="accordion-body datos_ciclo">
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mt-5">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed p-fc" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Zonas de Trabajo FC
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body datos_fc">
                         <p><strong>Todavia no lo realizaste!!</strong></p>
-                      </div>
-                  </div>
-              </div>
-              <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                      <button class="accordion-button collapsed p-fc" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Zonas de Trabajo FC
-                      </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                      <div class="accordion-body datos_fc">
-                      <p><strong>Todavia no lo realizaste!!</strong></p>
-                      </div>
-                  </div>
-              </div>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>    
         </div>
@@ -135,7 +137,7 @@ function btn_imc() {
       if (imc.Imc !== undefined && login === true) {
         $(`.datos_imc`).html(`
           <p><strong>Tu IMC es:</strong> ${imc.Imc}</p>
-          <p><strong>Para la OMS entras dentro de la denominación:</strong> ${imc.ImcClasificacion}</p>
+          <p><strong>Segun OMS clasificas como:</strong> ${imc.ImcClasificacion}</p>
           `)
       }
     }
@@ -145,14 +147,18 @@ function btn_imc() {
 function btn_ciclo() {
   $(`.p-ciclo`).click(() => {
     for (const ciclo of sessionArray) {
+      if(c === false){
+        guardadoCiclo();
+      }
       if (ciclo.ciclos !== undefined && login === true) {
         $(`.datos_ciclo`).html(`
           <p><strong>Cantidad de Ciclos:</strong> ${ciclo.ciclos}</p>
-          <p><strong>Promedio general:</strong> ${ciclo.ciclosPromedio}</p>
-          <p><strong>Tiempo Total:</strong> ${ciclo.ciclosSuma}</p>
+          <p><strong>Promedio general:</strong> ${ciclo.ciclosPromedio} min/km</p>
+          <p><strong>Tiempo Total:</strong> ${ciclo.ciclosSuma} min</p>
           `)
       }
     }
+    
   });
 }
 
@@ -178,12 +184,15 @@ function btn_fc() {
 function guardadoCiclo() {
   if (i !== 0) {
     let sumaTiempos = localStorage.getItem("Promedios")
+    let prom = sumaTiempos / i
+    prom = prom.toFixed(2);
     let datosCiclo = {
       ciclos: i,
       ciclosSuma: sumaTiempos,
-      ciclosPromedio: sumaTiempos / i,
+      ciclosPromedio: prom,
     }
     sessionArray.push(datosCiclo);
+    c = true
   }
 }
 
@@ -210,6 +219,9 @@ function guardarDatos() {
   guardadoCiclo();
   let hoy = new Date();
   hoy = hoy.toDateString()
+
+// Lo Ideal seria mandar este array a un back-end a travez de una API, para que 
+// se guarden los datos del usuario en una base de datos y los pueda llamar como un historico pero no llegue a completar esa parte. 
 
   sessionArray.unshift(hoy);
   localStorage.setItem("SessionUsuario", JSON.stringify(sessionArray))

@@ -29,6 +29,7 @@ function modalSec() {
         <h5 class="modal-title" id="exampleModalLabel">
           Registro
         </h5>
+        <button type="button" class="btn btn-primary btn_cancel" data-bs-dismiss="modal">X</button>
       </div>
       <div class="modal-body append2">
         <div class="d-grid gap-3 justify-content-center">
@@ -72,6 +73,7 @@ function modalStd() {
        <h5 class="modal-title" id="exampleModalLabel">
          Inicio Session
        </h5>
+       <button type="button" class="btn btn-primary btn_cancel" data-bs-dismiss="modal">X</button>
      </div>
      <div class="modal-body append2">
        <div class="row">
